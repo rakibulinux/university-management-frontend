@@ -9,8 +9,9 @@ interface IInput {
   size?: "large" | "small";
   value?: string | string[] | undefined;
   id?: string;
-  palceholder?: string;
+  placeholder?: string;
   validation?: object;
+  label?: string;
 }
 
 const FormInput = ({
@@ -19,16 +20,38 @@ const FormInput = ({
   size,
   value,
   id,
-  palceholder,
+  placeholder,
   validation,
+  label,
 }: IInput) => {
   const { control } = useFormContext();
   return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field: { onChange, onBlur, value, ref } }) => <Input />}
-    />
+    <>
+      {label ? label : null}
+      <Controller
+        control={control}
+        name={name}
+        render={({ field }) =>
+          type === "password" ? (
+            <Input.Password
+              type={type}
+              size={size}
+              placeholder={placeholder}
+              {...field}
+              value={value ? value : field.value}
+            />
+          ) : (
+            <Input
+              type={type}
+              size={size}
+              placeholder={placeholder}
+              {...field}
+              value={value ? value : field.value}
+            />
+          )
+        }
+      />
+    </>
   );
 };
 

@@ -10,7 +10,7 @@ type FormProps = {
   children?: ReactElement | ReactNode;
   submitHandler: SubmitHandler<any>;
 } & FormConfig;
-const Forms = ({ children, submitHandler, defaultValues }: FormProps) => {
+const Form = ({ children, submitHandler, defaultValues }: FormProps) => {
   const formConfig: FormConfig = {};
 
   if (!!defaultValues) formConfig[`defaultValues`] = defaultValues;
@@ -31,4 +31,4 @@ const Forms = ({ children, submitHandler, defaultValues }: FormProps) => {
   );
 };
 
-export default Forms;
+export default Form;
