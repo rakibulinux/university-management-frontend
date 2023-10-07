@@ -1,10 +1,17 @@
 import { Content } from "antd/es/layout/layout";
 import UMBreadcrumb from "./UMBreadcrumb";
+import Header from "./Header";
+import { getUserInfo } from "@/services/auth.service";
+import { UserInfoType } from "@/types";
 
 const Contents = ({ children }: { children: React.ReactNode }) => {
-  const base = "admin";
+  const { role } = getUserInfo() as UserInfoType;
+  const base = role;
   return (
-    <Content style={{ minHeight: "100vh", color: "black" }}>
+    <Content
+      style={{ padding: "0px 10px", minHeight: "100vh", color: "black" }}
+    >
+      <Header />
       <UMBreadcrumb
         items={[
           {

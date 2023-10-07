@@ -15,6 +15,9 @@ export const getUserInfo = () => {
     return "";
   }
 };
+export const removeUserInfo = (key: string) => {
+  return localStorage.removeItem(key);
+};
 export const isLoggedIn = () => {
   const authToken = getFromLocalStorage(authKey);
 
